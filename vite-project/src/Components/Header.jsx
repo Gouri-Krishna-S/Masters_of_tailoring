@@ -5,14 +5,34 @@ import styles from './Header.module.css'
 import Navbar from './Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import firebase from "firebase/compat/app";
+import 'firebase/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
+import app from "../firebase";
+import { auth } from "../firebase";
+import { signOut } from 'firebase/auth';
+
+
 
 function Header({ isLogged })
+
 {
+    const navigate = useNavigate();
+
+    const handleLogOut = async(e) =>{
+        e.preventDefault();
+        
+        await signOut(auth);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+        
+    }
     const [ isHamClicked, setIsHamClicked ] = useState(false);
     const [ showUserMenu, setShowUserMenu ] = useState(false);
     const menuRef = useRef(null);
     const btnRef = useRef(null);
-    const navigate = useNavigate();
+   
     const btnStyles = "capitalize rounded-[0.5rem] w-[5rem] py-2 blur-background-max hover:text-[#F28928] shadow-text-light";
     const navItems = "capitalize text-[1rem] md:text-lg text-stone-100 shadow-text-light hover:text-[#F28928]";
 
@@ -148,11 +168,13 @@ function Header({ isLogged })
                                                 </a>
                                             </dd>
                                             <dd>
+
                                                 <button 
                                                     className={navItems} 
                                                     onClick={ handleLogout }
                                                 >
                                                     Log Out
+
                                                 </button>
                                             </dd>
                                         </dl>

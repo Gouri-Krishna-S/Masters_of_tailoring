@@ -1,18 +1,33 @@
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+
+import 'firebase/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
+import app from "../firebase";
+import { auth } from "../firebase";
+import { signOut } from 'firebase/auth';
+
 import { useNavigate } from 'react-router-dom';
 
 function Navbar({ isClicked, isLogged }) 
 {
+
+    const navigate = useNavigate();
+
+    const handleLogOut = async(e) =>{
+        e.preventDefault();
+        
+        await signOut(auth);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+        
+    }
     const navItems = "capitalize text-[1.25rem] md:text-lg text-stone-100 shadow-text-light hover:text-[#F28928] leading-10";
     const btnStyles = "text-[#F28928] text-[1rem] text-left font-semibold"
 
-    const navigate = useNavigate();
-    function handleLogout()
-    {
-        // Logout
-        navigate('/login')
-    }
+    
 
     function handleRegister()
     {
@@ -98,14 +113,16 @@ function Navbar({ isClicked, isLogged })
                 {
                     isLogged ? 
                     <>
+
                         <dd>
                         <button 
                             className={navItems} 
-                            onClick={ handleLogout }
+                            onClick={ handleLogOut }
                         >
                             Log Out
                         </button>
                         </dd>
+
                     </>
                     : ''
                 }
