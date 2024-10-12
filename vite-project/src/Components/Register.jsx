@@ -1,16 +1,27 @@
 import TailorShop from "../assets/Tailor_shop_interior.jpg"
 import Logo from '../assets/Website-logo.png';
+import Login from "./Login";
 import React, { useState } from "react"
+
 import { useNavigate } from "react-router-dom";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import firebase from "firebase/compat/app";
+import 'firebase/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
+import app from "../firebase";
+import { auth } from "../firebase";
+
 
 
 export default function Register()
+
 {
+    
     const [ isIncomplete, setIsIncomplete ] = useState(false)
     const [formData, setFormData ] = useState(
         {
             email: '',
-            username: '',
             password: ''
         }
     )
@@ -28,30 +39,44 @@ export default function Register()
         console.log(formData);
     }
 
+
     function handleToSite()
     {
         navigate('/')
     }
     
-    function handleRegister() 
-    {
-        function handleRegister(event) {
-            event.preventDefault();
+    
+    const handleRegister = async(e) => {
+        e.preventDefault();
+        // Check for a valid email, password length, and if the username is provided
+        if (
+            !(formData.email.includes('@')) ||
+            !(formData.email.includes('.')) ||
+            formData.email.length < 8 ||
+            formData.password.length < 8 
+        )
+            setIsIncomplete(true);
+        else {
             
-            // Check for a valid email, password length, and if the username is provided
-            if (
-                !formData.email.includes('@') ||
-                !formData.email.includes('.') ||
-                formData.email.length < 8 ||
-                formData.password.length < 8 ||
-                formData.username.length < 4
-            ) {
-                setIsIncomplete(true);
-            } else {
-                setIsIncomplete(false);
-                // Navigate to login page
+            try{
+                const userCredential = await createUserWithEmailAndPassword(auth,formData.email,formData.password);
+                const user = userCredential.user;
+                const token = await user.getIdToken();
+                localStorage.setItem('token',token);
+                localStorage.setItem('user',JSON.stringify(user));
+                setIsIncomplete(false); 
                 navigate('/login');
+
             }
+            catch(e){
+                console.log(e);
+            }
+            /* // Add user data to localStorage
+            const user = Math.random();
+            localStorage.setItem('user', JSON.stringify(formData));
+            */
+            
+
         }
     }
     
@@ -68,19 +93,24 @@ export default function Register()
                     <h1 className="text-3xl text-[#F28928] text-center font-medium pb-[1rem] capitalize">Let us know you!</h1>
                     <form className="text-[#262626]" onSubmit={ handleRegister }>
                         <p className="pb-4 w-full flex flex-col items-center">
-                            <label htmlFor="username" className="block pb-1 w-[80%] text-left">
+                            <label htmlFor="email" className="block pb-1 w-[80%] text-left">
                                 Email Id:
                             </label>
                             <input 
-                                type="email" 
+                                type="text" 
                                 id="email" 
+                                name="email"
                                 onChange={ handleChange }
                                 className="bg-stone-300 w-[80%] h-[2rem] focus:outline-none border-[#180101] rounded-md px-2 focus:border-b-2"
+
                                 autoComplete="username"
                                 required
+
+                              
+
                             />
                         </p>
-                        <p className="pb-4 w-full flex flex-col items-center">
+                        {/* <p className="pb-4 w-full flex flex-col items-center">
                             <label htmlFor="username" className="block pb-1 w-[80%] text-left">
                                 Username:
                             </label>
@@ -93,7 +123,7 @@ export default function Register()
                                 autoComplete="username"
                                 required
                             />
-                        </p>
+                        </p> */}
 
                         <p className="pb-4 w-full flex flex-col items-center">
                             <label htmlFor="password" className="block pb-1 w-[80%] text-left">

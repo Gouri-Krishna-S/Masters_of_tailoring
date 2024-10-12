@@ -1,20 +1,28 @@
 import TailorShop from "../assets/Tailor_shop_interior.jpg"
 import Logo from '../assets/Website-logo.png';
 import React, { useState, useRef } from "react"
+
+import { signInWithEmailAndPassword } from "firebase/auth";
+import app from "../firebase";
+import 'firebase/auth';
+import { auth } from "../firebase";
+
 import { useNavigate } from "react-router-dom";
 
 export default function Login()
 {
+    const navigate = useNavigate();
     const [formData, setFormData ] = useState(
         {
-            username: '',
+            email: '',
             password: ''
         }
     )
-    const navigate = useNavigate();
+    
 
     function handleChange(event)
     {
+        
         const { name, value } = event.target;
         setFormData(prevState => (
             {
@@ -24,6 +32,7 @@ export default function Login()
         ));
         console.log(formData);
     }
+
 
     function handleToRegister()
     {
@@ -35,17 +44,25 @@ export default function Login()
         navigate('/')
     }
 
-    function handleLogin(event)
+
+    const handleLogin = async(e) =>
     {
-        
-        event.preventDefault();
-            
-        if(username)
-            setIsFound(true)        
-        else {
-            setIsFound(false);
-            // Navigate to login page
+        e.preventDefault();
+        // if(username)
+        //     setIsFound(true)        
+        // else {
+        //     setIsFound(false);}
+        try{
+            const userCredential = await signInWithEmailAndPassword(auth,formData.email,formData.password);
+            const user = userCredential.user;
+            localStorage.setItem('token',user.accesstoken);
+            localStorage.setItem('user',JSON.stringify(user));
             navigate('/');
+
+        }
+        catch(e){
+            console.log(e);
+
         }
     }
 
@@ -64,17 +81,19 @@ export default function Login()
                     <h1 className="text-3xl text-[#F28928] text-center font-medium pb-[3rem] capitalize">Welcome Back!</h1>
                     <form className="text-[#262626]" onSubmit={handleLogin}>
                         <p className="pb-4 w-full flex flex-col items-center">
-                            <label htmlFor="username" className="block pb-2 w-[80%] text-left">
-                                Username:
+                            <label htmlFor="email" className="block pb-2 w-[80%] text-left">
+                                Email:
                             </label>
                             <input 
                                 type="text" 
-                                id="username"
-                                name="username"
+                                id="email"
+                                name="email"
                                 onChange={handleChange}
                                 className="bg-stone-300 w-[80%] h-[2rem] focus:outline-none border-[#180101] rounded-md px-2 focus:border-b-2"
+
                                 autoComplete="username"
                                 required
+
                             />
                         </p>
 
@@ -94,10 +113,12 @@ export default function Login()
                         </p>
 
                         <p className="w-[90%] text-right pb-4">
+
                             <button className="bg-[#262626] text-stone-100 px-4 py-2 rounded-md" 
                             type="submit"
                             >
                                 Login
+
                             </button>
                         </p>
                         <p className="lg:hidden text-center">Don't have an account, <span className="text-[#F28928] cursor-pointer"><button onClick={handleToRegister}>Register Now</button></span>.</p>
