@@ -62,8 +62,12 @@ function Header({ isLogged })
 
     return (
         <header className={`${isHamClicked ? 'bg-[#131313b5] animated' : 'bg-[#13131344]'} w-full h-[5rem] absolute top-0 left-0 flex flex-row  backdrop-blur-[4px] border-b-[2px] border-stone-100 items-center justify-between p-[1rem] z-50`}>
-            <div className="h-16 w-16 ">
-                <img src={ Logo } alt="Company's logo" />
+            <div className="flex flex-row items-center justify-center gap-2">
+                <div className="h-16 w-16">
+                    <img src={ Logo } alt="Company's logo" />
+                </div>
+                
+                <h1 className='hidden md:block text-2xl font-semibold text-stone-100'><span className='text-stone-700'>Mas</span>tros</h1>
             </div>
             <div>
                 <button className={`md:hidden ${styles.menuButton} ${isHamClicked ? styles.active : ''}`} onClick={handleClickShow}>
