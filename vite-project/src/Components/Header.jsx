@@ -74,10 +74,15 @@ function Header({ isLogged })
         navigate('/login')
     }
 
-    function handleLogout()
+    const handleLogout = async(e) =>
     {
-        // Logout
-        navigate('/login')
+        e.preventDefault();
+        
+        await signOut(auth);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+        
     }
 
     return (
