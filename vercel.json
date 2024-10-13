@@ -1,14 +1,14 @@
 {
-    "projects": [
-      {
-        "src": "./Frontend/",
-        "use": "@vercel/static-build",
-        "buildCommand": "npm run build",
-        "outputDirectory": "dist"
-      },
-      {
-        "src": "./Backend/",
-        "use": "@vercel/node"
+  "builds": [
+    {
+      "src": "./vite-project/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
       }
-    ]
-  }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/vite-project/dist/$1" }
+  ]
+}
