@@ -26,6 +26,6 @@ const app = initializeApp({
     measurementId: MEASUREMENTID
   });
 
-export const db = getFirestore(app);
 export const auth = getAuth();
+export const db = getFirestore(app);
 export default app;
