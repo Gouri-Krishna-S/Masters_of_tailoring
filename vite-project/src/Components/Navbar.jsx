@@ -50,14 +50,14 @@ function Navbar({ isClicked, isLogged })
                         >
                             Sign up
                         </button>
-                        <p className="text-[.75rem]">Already have an account? <button className={`${btnStyles} text-[0.75rem]`}>
+                        <p className="text-[.75rem]">Already have an account? 
                         <button 
                             className={btnStyles} 
                             onClick={ handleLogin }
                         >
                             Login
                         </button>
-                            </button></p>
+                        </p>
                     </>
                 ) : (
                     <div className="h-[3rem] pt-4 flex flex-row gap-2 items-center">

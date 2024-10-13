@@ -1,7 +1,6 @@
 import TailorShop from "../assets/Tailor_shop_interior.jpg"
 import Logo from '../assets/Website-logo.png';
 import React, { useState, useRef } from "react"
-
 import { signInWithEmailAndPassword } from "firebase/auth";
 import app from "../firebase";
 import 'firebase/auth';
@@ -11,14 +10,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login()
 {
-    const navigate = useNavigate();
     const [formData, setFormData ] = useState(
         {
             email: '',
             password: ''
         }
     )
-    
+    const navigate = useNavigate();
 
     function handleChange(event)
     {
@@ -62,7 +60,6 @@ export default function Login()
         }
         catch(e){
             console.log(e);
-
         }
     }
 
@@ -79,7 +76,7 @@ export default function Login()
                         <img src={Logo} className="w-[6rem] h-[6rem]" />
                     </div>
                     <h1 className="text-3xl text-[#F28928] text-center font-medium pb-[3rem] capitalize">Welcome Back!</h1>
-                    <form className="text-[#262626]" onSubmit={handleLogin}>
+                    <form className="text-[#262626]" onSubmit={ handleLogin }>
                         <p className="pb-4 w-full flex flex-col items-center">
                             <label htmlFor="email" className="block pb-2 w-[80%] text-left">
                                 Email:
@@ -90,7 +87,6 @@ export default function Login()
                                 name="email"
                                 onChange={handleChange}
                                 className="bg-stone-300 w-[80%] h-[2rem] focus:outline-none border-[#180101] rounded-md px-2 focus:border-b-2"
-
                                 autoComplete="username"
                                 required
 
@@ -118,12 +114,11 @@ export default function Login()
                             type="submit"
                             >
                                 Login
-
                             </button>
                         </p>
                         <p className="lg:hidden text-center">Don't have an account, <span className="text-[#F28928] cursor-pointer"><button onClick={handleToRegister}>Register Now</button></span>.</p>
                         <p className="w-[100%] text-[#F28928] text-center pt-2 pb-2">
-                            <button onClick={handleToSite}>Back to Site</button>
+                            <button onClick={ handleToSite }>Back to Site</button>
                         </p>
                     </form>
                 </div>

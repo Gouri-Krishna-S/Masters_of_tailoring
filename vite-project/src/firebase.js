@@ -10,8 +10,8 @@ const  STORAGE_BUCKET = import.meta.env.VITE_STORAGE_BUCKET;
 const  MESSAGING_SENDERID = import.meta.env.VITE_MESSAGING_SENDERID;
 const APPID = import.meta.env.VITE_APPID;
 const MEASUREMENTID = import.meta.env.VITE_MEASUREMENTID;
-
 import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 const app = initializeApp({
     apiKey: API_BASE_URL,
@@ -22,6 +22,6 @@ const app = initializeApp({
     appId: APPID,
     measurementId: MEASUREMENTID
   });
-  export const auth = getAuth();
-  export default app;
- 
+
+export const auth = getAuth();
+export default app;
