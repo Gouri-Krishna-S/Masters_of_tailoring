@@ -3,5 +3,8 @@
     "firebase": "^10.14.1",
     "firebase-admin": "^12.6.0",
     "react-firebase-hooks": "^5.1.1"
+  },
+  "devDependencies": {
+    "react-error-overlay": "^6.0.9"
   }
 }
