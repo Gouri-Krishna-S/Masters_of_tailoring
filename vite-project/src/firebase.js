@@ -3,6 +3,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const  API_BASE_URL = import.meta.env.VITE_API_KEY;
@@ -25,5 +26,9 @@ const app = initializeApp({
     measurementId: MEASUREMENTID
   });
 
+export const auth = getAuth();
+
+export default app;
+export const db = getFirestore(app);
 export const auth = getAuth();
 export default app;
