@@ -16,10 +16,7 @@ export default function MainProductPage({props})
     const [product,setProduct] = useState({});
 
     const { id } = useParams();
-    console.log(id);
-
-    
-    
+    console.log(id);   
 
     useEffect(()=>{
       const getProductData = async() =>{

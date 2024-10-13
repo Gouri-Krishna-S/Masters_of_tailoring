@@ -54,12 +54,9 @@ export default function Masterpieces()
             </div>
 
             <div className="bg-[#221D1D] w-[98%] h-[85%] mx-auto rounded-[20px] relative">
-                <div className="h-full w-full flex flex-col lg:flex-row items-center justify-evenly">
+                <div className="h-full w-full flex flex-col xl:flex-row items-center justify-evenly">
                     {displayedProducts.map((product)=>(
-                        <div key={product.id}>
-                            <ProductCard id = {product.id} />
-                            
-                        </div>
+                            <ProductCard id = {product.id} key={product.id} />
                     ))}
                     
                 </div>

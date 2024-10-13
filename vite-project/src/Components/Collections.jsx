@@ -57,11 +57,8 @@ export default function Collections()
 
             <div className="bg-stone-100 w-[98%] h-[85%] mx-auto rounded-[20px] relative">
                 <div className="h-full w-full flex flex-col xl:flex-row items-center justify-evenly">
-                {displayedProducts.map((product)=>(
-                        <div key={product.id}>
-                            <ProductCard id = {product.id} />
-                            
-                        </div>
+                    {displayedProducts.map((product)=>(
+                        <ProductCard id = {product.id} key={product.id} />
                     ))}
                     
                 </div>
