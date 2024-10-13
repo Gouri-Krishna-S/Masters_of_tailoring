@@ -15,7 +15,6 @@ const APPID = import.meta.env.VITE_APPID;
 const MEASUREMENTID = import.meta.env.VITE_MEASUREMENTID;
 
 
-
 const app = initializeApp({
     apiKey: API_BASE_URL,
     authDomain: AUTH_DOMAIN,
