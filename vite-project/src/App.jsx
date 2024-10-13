@@ -2,14 +2,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Site from "./Components/Site";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
-
 import MainProductPage from "./Components/MainProductPage";
-import { useState } from 'react';
-
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 // import { useCollectionData } from 'react-firebase-hooks/firestore';
 
