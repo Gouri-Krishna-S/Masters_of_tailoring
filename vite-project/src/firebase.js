@@ -7,13 +7,13 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const app = initializeApp({
-    apiKey: "AIzaSyDBgNwcXHZl-4byjqjDZxgcg8JY91_bG8Y",
-    authDomain: "noooo-f4358.firebaseapp.com",
-    projectId: "noooo-f4358",
-    storageBucket: "noooo-f4358.appspot.com",
-    messagingSenderId: "659729609465",
-    appId: "1:659729609465:web:df2f500f49f9063bbf6828",
-    measurementId: "G-ZF3N13955R"
+    apiKey: "AIzaSyDDpDHRqZKsXAENAL4Zh3Imb5Th_F7vndU",
+    authDomain: "masteroftailoring-53370.firebaseapp.com",
+    projectId: "masteroftailoring-53370",
+    storageBucket: "masteroftailoring-53370.appspot.com",
+    messagingSenderId: "720844154178",
+    appId: "1:720844154178:web:dd1c98aa19d50e603994db",
+    measurementId: "G-XFV5FKP3XE"
   });
   export const auth = getAuth();
   export default app;
