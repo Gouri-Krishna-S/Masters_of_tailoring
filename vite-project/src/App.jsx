@@ -44,9 +44,9 @@ function App()
       element: <Login />
     },
     {
-      path: '/product',
+      path: '/product/:id',
       element: <>
-                  <MainProductPage />
+                  <MainProductPage props = {user}/>
               </>
   }
 

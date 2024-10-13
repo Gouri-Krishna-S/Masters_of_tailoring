@@ -65,7 +65,7 @@ function Navbar({ isClicked, isLogged })
                             <FontAwesomeIcon icon={faUser} />
                         </div>
                         <div className="flex flex-col gap-0">
-                            <h1 className="text-[1rem]">Name</h1>
+                            <h1 className="text-[1rem]">{isLogged.email}</h1>
                             <p className="text-[0.75rem]">Account No</p>
                         </div>
                         

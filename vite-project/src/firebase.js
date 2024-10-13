@@ -3,6 +3,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 const  API_BASE_URL = import.meta.env.VITE_API_KEY;
 const  AUTH_DOMAIN = import.meta.env.VITE_AUTH_DOMAIN;
 const  PROJECTID = import.meta.env.VITE_PROJECTID;
@@ -22,6 +23,9 @@ const app = initializeApp({
     appId: APPID,
     measurementId: MEASUREMENTID
   });
-  export const auth = getAuth();
-  export default app;
- 
+
+
+export const auth = getAuth();
+
+export default app;
+export const db = getFirestore(app);
