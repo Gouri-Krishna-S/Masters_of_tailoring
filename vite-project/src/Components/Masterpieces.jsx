@@ -9,10 +9,14 @@ export default function Masterpieces()
 {   
 
     const [productList, setProductList] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(1);
 
     const productCollectionRef = collection(db,"products");
-    const itemsPerPage = 2;
+    let itemsPerPage;
+    if(window.innerWidth > 1024)
+        itemsPerPage = 3;
+    else
+        itemsPerPage = 2;
 
     useEffect(() => {
         const getProductList = async() => {
@@ -56,7 +60,7 @@ export default function Masterpieces()
             <div className="bg-[#221D1D] w-[98%] h-[85%] mx-auto rounded-[20px] relative">
                 <div className="h-full w-full flex flex-col xl:flex-row items-center justify-evenly">
                     {displayedProducts.map((product)=>(
-                            <ProductCard id = {product.id} key={product.id} />
+                        <ProductCard id = {product.id} key={product.id} />
                     ))}
                     
                 </div>

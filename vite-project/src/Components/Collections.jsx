@@ -10,10 +10,12 @@ export default function Collections()
 {
 
     const [productList, setProductList] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const itemsPerPage = 2;
-
-    
+    const [currentIndex, setCurrentIndex] = useState(1);
+    let itemsPerPage;
+    if(window.innerWidth > 1024)
+        itemsPerPage = 3;
+    else
+        itemsPerPage = 2;
 
     const productCollectionRef = collection(db,"products");
 
@@ -25,13 +27,11 @@ export default function Collections()
                 const filteredData = data.docs.map((doc) => ({...doc.data(), id: doc.id,
 
                 }));
-                setProductList(filteredData);
-                
+                setProductList(filteredData);     
             }
             catch(e){
                 console.log(e);
-            }
-            
+            }   
         };
         getProductList();
     }, []); 
