@@ -17,15 +17,8 @@ import app from "./firebase";
 import { auth } from "./firebase";
 
 
-
-
-
-
 function App()
-
 {
-
-  
 
   const [user] = useAuthState(auth);
   const router = createBrowserRouter([

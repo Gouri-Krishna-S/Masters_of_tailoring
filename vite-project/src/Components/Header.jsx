@@ -74,16 +74,6 @@ function Header({ isLogged })
         navigate('/login')
     }
 
-    const handleLogout = async(e) =>
-    {
-        e.preventDefault();
-        
-        await signOut(auth);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        navigate('/login');
-        
-    }
 
     return (
         <header className={`${isHamClicked ? 'bg-[#131313b5] animated' : 'bg-[#13131344]'} w-full h-[5rem] absolute top-0 left-0 flex flex-row  backdrop-blur-[4px] border-b-[2px] border-stone-100 items-center justify-between p-[1rem] z-50`}>
@@ -180,7 +170,7 @@ function Header({ isLogged })
 
                                                 <button 
                                                     className={navItems} 
-                                                    onClick={ handleLogout }
+                                                    onClick={ handleLogOut }
                                                 >
                                                     Log Out
 

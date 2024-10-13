@@ -15,6 +15,7 @@ const app = initializeApp({
     appId: "1:720844154178:web:dd1c98aa19d50e603994db",
     measurementId: "G-XFV5FKP3XE"
   });
-  export const auth = getAuth();
-  export default app;
+
+export const auth = getAuth();
+export default app;
  
