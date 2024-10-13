@@ -2,9 +2,7 @@ import TailorShop from "../assets/Tailor_shop_interior.jpg"
 import Logo from '../assets/Website-logo.png';
 import Login from "./Login";
 import React, { useState } from "react"
-
 import { useNavigate } from "react-router-dom";
-
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import firebase from "firebase/compat/app";
 import 'firebase/auth';
@@ -12,12 +10,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import app from "../firebase";
 import { auth } from "../firebase";
 
-
-
 export default function Register()
-
-{
-    
+{    
     const [ isIncomplete, setIsIncomplete ] = useState(false)
     const [formData, setFormData ] = useState(
         {
@@ -57,7 +51,6 @@ export default function Register()
         )
             setIsIncomplete(true);
         else {
-            
             try{
                 const userCredential = await createUserWithEmailAndPassword(auth,formData.email,formData.password);
                 const user = userCredential.user;
@@ -75,11 +68,8 @@ export default function Register()
             const user = Math.random();
             localStorage.setItem('user', JSON.stringify(formData));
             */
-            
-
         }
     }
-    
 
     return (
         <section className="bg-[#180101] min-h-screen w-full flex flex-row items-center justify-center">
@@ -102,12 +92,8 @@ export default function Register()
                                 name="email"
                                 onChange={ handleChange }
                                 className="bg-stone-300 w-[80%] h-[2rem] focus:outline-none border-[#180101] rounded-md px-2 focus:border-b-2"
-
                                 autoComplete="username"
                                 required
-
-                              
-
                             />
                         </p>
                         {/* <p className="pb-4 w-full flex flex-col items-center">
@@ -140,11 +126,12 @@ export default function Register()
                             />
                         </p>
 
-                        <p className="w-[90%] text-right pb-8 ">
+                        <p className="w-[90%] text-right pb-8">
                             <button className="bg-[#262626] text-stone-100 px-4 py-2 rounded-md">
                                 Register
                             </button>
                         </p>
+                        { isIncomplete && <p className="w-full text-center text-pink-700 font-semibold">!! Use a Stronger password !!</p>}
                         <p className="w-[100%] text-[#F28928] text-center pb-4">
                             <button className="" onClick={handleToSite}>Back to Site</button>
                         </p>
