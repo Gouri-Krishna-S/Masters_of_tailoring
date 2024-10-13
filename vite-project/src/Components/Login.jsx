@@ -10,14 +10,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login()
 {
-    const navigate = useNavigate();
     const [formData, setFormData ] = useState(
         {
             email: '',
             password: ''
         }
     )
-    
+    const navigate = useNavigate();
 
     function handleChange(event)
     {
@@ -115,12 +114,11 @@ export default function Login()
                             type="submit"
                             >
                                 Login
-
                             </button>
                         </p>
                         <p className="lg:hidden text-center">Don't have an account, <span className="text-[#F28928] cursor-pointer"><button onClick={handleToRegister}>Register Now</button></span>.</p>
                         <p className="w-[100%] text-[#F28928] text-center pt-2 pb-2">
-                            <button onClick={handleToSite}>Back to Site</button>
+                            <button onClick={ handleToSite }>Back to Site</button>
                         </p>
                     </form>
                 </div>
