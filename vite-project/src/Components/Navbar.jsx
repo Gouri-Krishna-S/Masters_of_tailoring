@@ -28,6 +28,19 @@ function Navbar({ isClicked, isLogged })
     const btnStyles = "text-[#F28928] text-[1rem] text-left font-semibold"
 
     
+    function handleDelete()
+    {
+        const user = auth.currentUser;
+        if(user){
+            deleteUser(user)
+            .then(()=>{
+                navigate("/login");
+            })
+            .catch((e)=>{
+                console.log(e);
+            })
+        }
+    }
 
     function handleRegister()
     {
@@ -120,6 +133,15 @@ function Navbar({ isClicked, isLogged })
                             onClick={ handleLogOut }
                         >
                             Log Out
+                        </button>
+                        </dd>
+
+                        <dd>
+                        <button 
+                            className={navItems} 
+                            onClick={ handleDelete }
+                        >
+                            Delete Account
                         </button>
                         </dd>
 

@@ -35,7 +35,6 @@ export default function MainProductPage({props})
         catch(e){
           console.log(e);
           setLoading(false);
-          
         }
       };
       getProductData();
@@ -62,20 +61,19 @@ export default function MainProductPage({props})
 
     const handleSubmit = async(e) => {
        e.preventDefault();
+       
        try{
         await addDoc(measureDocRef, {
           measurements: measurements,
           productName: product.Name,
           userEmail: props.email,
-
        })
+       alert('Item bought!')
        }
        catch(e){
+        alert('Purchase failed!')
         console.log(e);
        }
-       
-
-
        // Back-end
        console.log(measurements);
     };
@@ -85,7 +83,7 @@ export default function MainProductPage({props})
           <div className='w-[90%] h-[80%] bg-stone-100 rounded-[10px] flex flex-row items-center justify-between'>
               <div className='w-[30%] h-[70%] flex items-center justify-center'>
                   {loading ? (
-                      <p>Loading...</p>
+                      <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-pink-700">Loading...</p>
                   ) : (
                       product.ImageArray && product.ImageArray.length > 0 ? (
                           <img 
@@ -101,7 +99,7 @@ export default function MainProductPage({props})
               <div className='w-[70%] h-full pl-4 lg:pl-8 bg-[#B7B7B7] py-[5rem] rounded-r-[10px] xl:pr-8'>
                   <div className='flex flex-row justify-between pr-4'>
                       <h1 className='text-sm md:text-xl xl:text-3xl'>{loading ? null : product.Name}</h1>
-                      <h1 className='text-sm lg:text-xl xl:text-3xl text-[#865324]'>{loading ? null : product.Price}</h1>
+                      <h1 className='text-sm lg:text-xl xl:text-3xl text-[#184e4b]'>{loading ? null : product.Price}</h1>
                   </div>
                   <p className='text-[#835123] text-[8px] md:text-[12px] pb-[6px] md:pb-[2rem]'>~Year of the Dragon Collection</p>
                   <p className='text-[0.5rem] lg:text-[1rem] pb-2 w-[90%]'>{loading ? null : product.Description}</p>

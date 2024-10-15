@@ -59,6 +59,7 @@ export default function Login()
 
         }
         catch(e){
+            alert('Account not found!')
             console.log(e);
         }
     }

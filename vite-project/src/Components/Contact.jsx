@@ -2,6 +2,26 @@ import { useState } from 'react'
 
 export default function Contact()
 {
+    const [formData, setFormData ] = useState(
+        {
+            email: '',
+            description: ''
+        }
+    )
+
+    function handleChange(event)
+    {
+        
+        const { name, value } = event.target;
+        setFormData(prevState => (
+            {
+                ...prevState,
+                [name]: value
+            }
+        ));
+        console.log(formData);
+    }
+
     function handleSubmit()
     {
 
@@ -40,6 +60,7 @@ export default function Contact()
                             id="email" 
                             name="email"
                             placeholder="Email id"
+                            onChange={ handleChange }
                             required
                             autoComplete='username'
                         />
@@ -52,6 +73,7 @@ export default function Contact()
                             id="message" 
                             type="text" 
                             name="decription"
+                            onChange={ handleChange }
                             required
                         />
                     </p>

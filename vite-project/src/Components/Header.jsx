@@ -10,7 +10,7 @@ import 'firebase/auth';
 import { useAuthState } from "react-firebase-hooks/auth";
 import app from "../firebase";
 import { auth } from "../firebase";
-import { signOut } from 'firebase/auth';
+import { deleteUser, signOut } from 'firebase/auth';
 
 
 
@@ -26,8 +26,22 @@ function Header({ isLogged })
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         navigate('/login');
-        
     }
+
+    function handleDelete()
+    {
+        const user = auth.currentUser;
+        if(user){
+            deleteUser(user)
+            .then(()=>{
+                navigate("/login");
+            })
+            .catch((e)=>{
+                console.log(e);
+            })
+        }
+    }
+
     const [ isHamClicked, setIsHamClicked ] = useState(false);
     const [ showUserMenu, setShowUserMenu ] = useState(false);
     const menuRef = useRef(null);
@@ -150,7 +164,7 @@ function Header({ isLogged })
                                             <FontAwesomeIcon icon={faUser} />
                                         </div>
                                             <div className="flex flex-col gap-0 cursor-default">
-                                                <h1 className="text-[1rem]">Name</h1>
+                                                <h1 className="text-[1rem]">{isLogged.email}</h1>
                                                 <p className="text-[0.75rem]">Account No</p>
                                             </div>
                                         </div>
@@ -173,6 +187,16 @@ function Header({ isLogged })
                                                     onClick={ handleLogOut }
                                                 >
                                                     Log Out
+
+                                                </button>
+                                            </dd>
+                                            <dd>
+
+                                                <button 
+                                                    className={navItems} 
+                                                    onClick={ handleDelete }
+                                                >
+                                                    Delete Account
 
                                                 </button>
                                             </dd>
