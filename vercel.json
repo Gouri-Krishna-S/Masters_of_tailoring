@@ -4,11 +4,11 @@
       "src": "/vite-project/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build"  
+        "distDir": "vite-project/dist"  
       }
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/vite-project/build/$1" }  
+    { "src": "/(.*)", "dest": "/vite-project/dist/$1" }  
   ]
 }
