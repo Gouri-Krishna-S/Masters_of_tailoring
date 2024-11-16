@@ -4,7 +4,7 @@ export default function Cart()
 {
     return (
         <section className="bg-[#180101] h-screen w-screen relative">
-            <div className="">
+            <div className="bg-stone-200 h-[70%] mx-auto">
                 <h1 className="">
 
                 </h1>
