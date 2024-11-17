@@ -1,10 +1,6 @@
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-
 import 'firebase/auth';
-import { useAuthState } from "react-firebase-hooks/auth";
-import app from "../firebase";
 import { auth } from "../firebase";
 import { signOut } from 'firebase/auth';
 
@@ -52,6 +48,11 @@ function Navbar({ isClicked, isLogged })
         navigate('/login')
     }
 
+    function handleCart()
+    {
+        navigate('/cart')
+    }
+
     return (
         <div className={`p-1rem fixed top-full right-0 w-3/4 h-[calc(100svh-5rem)] bg-[#131313b5] backdrop-blur-[4px] md:hidden ${isClicked ? 'flex animated' : 'hidden'} flex-col items-start pl-[0.5rem] gap-[1rem] rounded-bl-[1.5rem]`}>
             <div className="text-stone-100 flex flex-col gap-1 pl-[1rem] lg:pl-[2rem] pt-[1rem]">
@@ -90,14 +91,14 @@ function Navbar({ isClicked, isLogged })
                     isLogged ? 
                     <>
                         <dd>
-                            <a className={navItems} href="/cart">
+                            <button className={navItems} onClick={ handleCart }>
                                 My Cart
-                            </a>
+                            </button>
                         </dd>
                         <dd>
-                            <a className={navItems}>
+                            <button className={navItems}>
                                 My Wishlist
-                            </a>
+                            </button>
                         </dd>
                     </>
                     : ''
